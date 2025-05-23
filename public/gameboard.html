@@ -4,17 +4,31 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Black Jack</title>
-		<link rel="stylesheet" href="./style/style.css" />
+		<link rel="stylesheet" href="./style/gameboard.css" />
 	</head>
 	<body>
-		<div class="gameboard">
-			<h1>CDA BlackJack</h1>
-		</div>
-		<div class="UI">
-			<div class="token-text-container">
-				<p>200</p>
-				<img src="./ressources/Casino-Token.png" alt="BlackJack Token" />
-			</div>
-		</div>
-	</body>
+    <div class="gameboard">
+        <h1>CDA BlackJack</h1>
+        
+        <div class="main-joueur" id="main-joueur"></div>
+        <div class="main-croupier" id="main-croupier"></div>
+        
+
+        <div class="controls">
+            <button id="btn-miser">Miser 10 jetons</button>
+            <button id="btn-piocher">Piocher une carte</button>
+            <button id="btn-terminer">Terminer le tour</button>
+            <button id="btn-quitter">Quitter la partie</button>
+        </div>
+    </div>
+
+    <div class="UI">
+
+        <div class="token-text-container">
+            <p id="jetons-disponibles">200</p>
+            <img src="./ressources/Casino-Token.png" alt="BlackJack Token" />
+        </div>
+    </div>
+<script type="module" src="./dist/app.js"></script>
+</body>
 </html>

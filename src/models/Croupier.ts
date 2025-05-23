@@ -1,8 +1,8 @@
-import { IParticipant } from "../interfaces/IParticipant";
-import { Carte } from "./Carte";
-import { Joueur } from "./Joueur";
-import { Paquet } from "./Paquet";
-import { Partie } from "./Partie";
+import { IParticipant } from "../interfaces/IParticipant.js";
+import { Carte } from "./Carte.js";
+import { Joueur } from "./Joueur.js";
+import { Paquet } from "./Paquet.js";
+import { Partie } from "./Partie.js";
 
 export class Croupier implements IParticipant {
     public main: Carte[] = [];
@@ -14,39 +14,37 @@ export class Croupier implements IParticipant {
         participant.recevoirCarte(carte);
     }
 
-    public calculerScore(main: Carte[]): number {
-        let score = 0;
-        let asCount = 0;
+    public calculerScore(): number {
+    let score = 0;
+    let asCount = 0;
 
-        main.forEach((carte) => {
-            if (carte.face) { 
-                switch (carte.valeur) {
-                    case "Valet":
-                    case "Dame":
-                    case "Roi":
-                        score += 10;
-                        break;
-                    case "As":
-                        asCount++;
-                        score += 11;
-                        break;
-                    default:
-                        score += parseInt(carte.valeur);
-                }
-            }
-        });
-
-        while (score > 21 && asCount > 0) {
-            score -= 10;
-            asCount--;
+    this.getMain().forEach((carte) => {
+        switch (carte.valeur) {
+            case "Valet":
+            case "Dame":
+            case "Roi":
+                score += 10;
+                break;
+            case "As":
+                asCount++;
+                score += 11;
+                break;
+            default:
+                score += parseInt(carte.valeur) || 0;
         }
+    });
 
-        return score;
+    while (score > 21 && asCount > 0) {
+        score -= 10;
+        asCount--;
     }
+
+    return score;
+}
 
     vérifierGagnant(partie: Partie): Map<Joueur, "gagné" | "perdu" | "égalité"> {
         const resultats = new Map<Joueur, "gagné" | "perdu" | "égalité">();
-        const scoreCroupier = this.calculerScore(this.main);
+        const scoreCroupier = this.calculerScore();
 
         partie.joueurs.forEach((joueur) => {
             const scoreJoueur = this.calculerScore(joueur.main);
@@ -68,16 +66,22 @@ export class Croupier implements IParticipant {
     }
 
     jouerTour(paquet: Paquet): void {
-        while (this.calculerScore(this.main) < 17) {
-            this.recevoirCarte(paquet.piocherCarte());
-        }
+    
+    this.main.forEach(carte => carte.face = true);
+    
+    
+    while (this.calculerScore() < 17) { 
+        const carte = paquet.piocherCarte();
+        if (!carte) break;
+        this.recevoirCarte(carte);
     }
+}
 
     recevoirCarte(carte: Carte): void {
         this.main.push(carte);
     }
 
     getMain(): Carte[] {
-        return this.main;
-    }
+    return this.main.filter(carte => carte.face);
+}
 }

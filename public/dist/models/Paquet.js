@@ -1,12 +1,18 @@
+import { Carte } from "./Carte.js";
 export class Paquet {
     constructor() {
         this.cartes = [];
         this.initialiser();
+        this.melanger();
     }
     initialiser() {
         const valeurs = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Valet', 'Dame', 'Roi', 'As'];
         const couleurs = ['Coeur', 'Carreau', 'Pique', 'Trèfle'];
-        // Création des 52 cartes
+        for (const couleur of couleurs) {
+            for (const valeur of valeurs) {
+                this.cartes.push(new Carte(valeur, couleur)); //
+            }
+        }
     }
     melanger() {
         for (let i = this.cartes.length - 1; i > 0; i--) {
@@ -15,6 +21,8 @@ export class Paquet {
         }
     }
     piocherCarte() {
+        if (this.cartes.length === 0)
+            throw new Error("Paquet vide !");
         return this.cartes.pop();
     }
 }

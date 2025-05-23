@@ -1,0 +1,32 @@
+/* style.css */
+.controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.carte {
+    width: 100px;
+    height: 140px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+}
+
+.carte.visible {
+    background: white;
+}
+
+.carte.cachee {
+    background: #2c3e50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+}

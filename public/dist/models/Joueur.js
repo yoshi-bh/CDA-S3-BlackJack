@@ -13,10 +13,11 @@ export class Joueur {
         return this.main.filter(carte => carte.face);
     }
     miser(montant) {
-        if (montant <= 0 || montant > this.jetons)
-            return false;
-        this.jetons -= montant;
-        return true;
+        if (this.jetons >= montant) {
+            this.jetons -= montant;
+            return true;
+        }
+        return false;
     }
     stopPioche() {
         this.enJeu = false;
