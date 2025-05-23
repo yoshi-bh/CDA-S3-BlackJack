@@ -15,7 +15,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 50px;
+  gap: 60px;
   width: 800px;
   height: 600px;
   border-radius: 25px;
@@ -25,11 +25,26 @@
 }
 
 .bank {
+  display: flex;
   margin: 0;
   position: absolute;
   top: 25px;
   right: 25px;
   font-size: 35px;
+}
+
+.bank p {
+  margin: 0;
+}
+
+.bank .token-text-container p {
+  font-size: 35px;
+  margin-right: 10px;
+}
+
+.bank .token-text-container img {
+  width: 40px;
+  height: 40px;
 }
 
 .card h2 {
@@ -40,8 +55,16 @@
 .menu {
   width: 350px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+}
+
+.menu .token-text-container input {
+  all: unset;
+  text-align: right;
+  margin-right: 15px;
+  font-size: 45px;
+  width: 100px;
 }
 
 .card button {

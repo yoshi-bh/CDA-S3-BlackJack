@@ -30,7 +30,7 @@ export class Joueur implements IParticipant {
         this.recevoirCarte(carte);
     }
 
-    stopPioche(): void {
+    stopPioche(): void { // DOUBLON?
 
     }
 }

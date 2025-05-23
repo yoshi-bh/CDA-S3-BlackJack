@@ -1,21 +1,28 @@
 import { ICasino } from "../interfaces/ICasino";
 
 class Casino implements ICasino {
-	constructor(private name: string, private address: string, private solde: number = 0, private partieEnCours: []) {}
+	constructor(
+    private name: string,
+    private address: string,
+    private solde: number = 0,
+    private partieEnCours: [] = []
+  ) {}
 
-  fournirJetons(amount: number): void {
-    if (player.cash >= amount) {
-      player.cash -= amount;
-      player.token += amount;
+  fournirJetons(montant: number): void {
+    if (player.argent >= montant) {
+      player.argent -= montant;
+      player.jetons += montant;
     }
   };
 
-  echangedJetons(amount: number): void {
-    if (player.token >= amount) {
-      player.token -= amount;
-      player.cash += amount;
+  echangerJetons(montant: number): void {
+    if (player.jetons >= montant) {
+      player.jetons -= montant;
+      player.argent += montant;
     }
   };
+
+  
 
   // createCasino(): Casino;
 }
