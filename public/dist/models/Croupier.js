@@ -8,24 +8,22 @@ export class Croupier {
         const carte = paquet.piocherCarte();
         participant.recevoirCarte(carte);
     }
-    calculerScore(main) {
+    calculerScore() {
         let score = 0;
         let asCount = 0;
-        main.forEach((carte) => {
-            if (carte.face) {
-                switch (carte.valeur) {
-                    case "Valet":
-                    case "Dame":
-                    case "Roi":
-                        score += 10;
-                        break;
-                    case "As":
-                        asCount++;
-                        score += 11;
-                        break;
-                    default:
-                        score += parseInt(carte.valeur);
-                }
+        this.getMain().forEach((carte) => {
+            switch (carte.valeur) {
+                case "Valet":
+                case "Dame":
+                case "Roi":
+                    score += 10;
+                    break;
+                case "As":
+                    asCount++;
+                    score += 11;
+                    break;
+                default:
+                    score += parseInt(carte.valeur) || 0;
             }
         });
         while (score > 21 && asCount > 0) {
@@ -36,7 +34,7 @@ export class Croupier {
     }
     vérifierGagnant(partie) {
         const resultats = new Map();
-        const scoreCroupier = this.calculerScore(this.main);
+        const scoreCroupier = this.calculerScore();
         partie.joueurs.forEach((joueur) => {
             const scoreJoueur = this.calculerScore(joueur.main);
             if (scoreJoueur > 21) {
@@ -58,14 +56,18 @@ export class Croupier {
         return resultats;
     }
     jouerTour(paquet) {
-        while (this.calculerScore(this.main) < 17) {
-            this.recevoirCarte(paquet.piocherCarte());
+        this.main.forEach(carte => carte.face = true);
+        while (this.calculerScore() < 17) {
+            const carte = paquet.piocherCarte();
+            if (!carte)
+                break;
+            this.recevoirCarte(carte);
         }
     }
     recevoirCarte(carte) {
         this.main.push(carte);
     }
     getMain() {
-        return this.main;
+        return this.main.filter(carte => carte.face);
     }
 }

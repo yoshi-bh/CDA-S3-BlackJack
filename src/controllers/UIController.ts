@@ -1,6 +1,6 @@
-import { Carte } from "../models/Carte";
-import { Joueur } from "../models/Joueur";
-import { Partie } from "../models/Partie";
+import { Carte } from "../models/Carte.js";
+import { Joueur } from "../models/Joueur.js";
+import { Partie } from "../models/Partie.js";
 
 export class UIController {
 
@@ -15,7 +15,8 @@ export class UIController {
         this.mettreAJourUI();
     }
 
-    private initialiserEcouteurs() {
+    public initialiserEcouteurs() {
+        document.getElementById('btn-miser')?.addEventListener('click', () => this.gererMise());
         document.getElementById('btn-piocher')?.addEventListener('click', () => this.piocherCarte());
         document.getElementById('btn-terminer')?.addEventListener('click', () => this.terminerTour());
         document.getElementById('btn-quitter')?.addEventListener('click', () => this.quitterPartie());
@@ -34,8 +35,22 @@ export class UIController {
 
     private terminerTour() {
         this.partie.jouerTour(this.joueurActif, 'rester');
+        this.partie.lancerTourCroupier();
         this.mettreAJourUI();
+
+        const resultats = this.partie.croupier.vérifierGagnant(this.partie);
+        resultats.forEach((resultat, joueur) => {
+        alert(`${joueur.nom} a ${resultat} !`);
+    });
     }
+
+    private gererMise() {
+    if (this.joueurActif.miser(10)) {
+        this.mettreAJourUI();
+    } else {
+        alert("Mise impossible !");
+    }
+}
 
     private quitterPartie() {
         window.location.href = "/index.html"; 

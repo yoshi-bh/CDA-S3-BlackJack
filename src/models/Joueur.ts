@@ -1,5 +1,5 @@
-import { IParticipant } from "../interfaces/IParticipant";
-import { Carte } from "./Carte";
+import { IParticipant } from "../interfaces/IParticipant.js";
+import { Carte } from "./Carte.js";
 
 export class Joueur implements IParticipant {
     public readonly id: number;
@@ -22,13 +22,13 @@ export class Joueur implements IParticipant {
         return this.main.filter(carte => carte.face);
     }
 
-
-    miser(montant: number): boolean {
-        if (montant <= 0 || montant > this.jetons) return false;
-        
+    public miser(montant: number): boolean {
+    if (this.jetons >= montant) {
         this.jetons -= montant;
         return true;
     }
+    return false;
+}
 
 
     stopPioche(): void {
