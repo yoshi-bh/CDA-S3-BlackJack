@@ -9,7 +9,7 @@
   left: 0;
 }
 
-.token-container {
+.card {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,6 +21,12 @@
   color: white;
 }
 
-.token-container p {
-  margin: 0px 50px;
+.card p {
+  margin: 0 10px;
+  font-size: 45px;
+}
+
+.card img {
+  width: 75px;
+  height: 75px;
 }
