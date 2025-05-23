@@ -11,8 +11,10 @@
 
 .card {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 50px;
   width: 1200px;
   height: 800px;
   border-radius: 15px;
