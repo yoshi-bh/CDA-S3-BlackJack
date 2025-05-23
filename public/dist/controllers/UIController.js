@@ -38,7 +38,7 @@ export class UIController {
         }
     }
     quitterPartie() {
-        window.location.href = "/index.html";
+        window.location.href = "/public/index.html";
     }
     mettreAJourUI() {
         const jetonsElement = document.getElementById('jetons-disponibles');

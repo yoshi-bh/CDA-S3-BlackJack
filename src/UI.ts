@@ -5,4 +5,4 @@ const montant = (<HTMLInputElement>document.getElementById("amount")).value;
 
 document.getElementById("buyToken")?.addEventListener("click", () => casino.fournirJetons(+montant));
 document.getElementById("sellToken")?.addEventListener("click", () => casino.echangerJetons(+montant));
-document.getElementById("popup")?.addEventListener("click", () => {}); // Add link of gameboard.html here
+document.getElementById("closeBtn")?.addEventListener("click", () => {window.location.href = "/public/gameboard.html"});

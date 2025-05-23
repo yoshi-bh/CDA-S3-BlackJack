@@ -8,9 +8,8 @@ export class Casino {
         this.updatePlayerValues();
     }
     updatePlayerValues() {
-        var _a, _b;
-        this.player = { argent: Number((_a = document.getElementById("playerMoney")) === null || _a === void 0 ? void 0 : _a.textContent),
-            jetons: Number((_b = document.getElementById("playerTokens")) === null || _b === void 0 ? void 0 : _b.textContent) };
+        this.player = { argent: Number(document.getElementById("playerMoney")?.textContent),
+            jetons: Number(document.getElementById("playerTokens")?.textContent) };
     }
     fournirJetons(montant) {
         if (this.player.argent >= montant) {
