@@ -9,7 +9,10 @@ export class Paquet {
         // Création des 52 cartes
     }
     melanger() {
-        // Algorithme de mélange
+        for (let i = this.cartes.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this.cartes[i], this.cartes[j]] = [this.cartes[j], this.cartes[i]];
+        }
     }
     piocherCarte() {
         return this.cartes.pop();
