@@ -21,6 +21,5 @@ export class Joueur {
         this.recevoirCarte(carte);
     }
     stopPioche() {
-        // Logique pour arrêter de piocher
     }
 }
