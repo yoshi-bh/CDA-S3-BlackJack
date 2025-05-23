@@ -1,4 +1,4 @@
-import { Carte } from "../models/Carte";
+import { Carte } from "../models/Carte.js";
 
 export interface IParticipant {
     recevoirCarte(carte: Carte): void;

@@ -6,10 +6,10 @@ export class UIController {
         this.mettreAJourUI();
     }
     initialiserEcouteurs() {
-        var _a, _b, _c;
-        (_a = document.getElementById('btn-piocher')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => this.piocherCarte());
-        (_b = document.getElementById('btn-terminer')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', () => this.terminerTour());
-        (_c = document.getElementById('btn-quitter')) === null || _c === void 0 ? void 0 : _c.addEventListener('click', () => this.quitterPartie());
+        document.getElementById('btn-miser')?.addEventListener('click', () => this.gererMise());
+        document.getElementById('btn-piocher')?.addEventListener('click', () => this.piocherCarte());
+        document.getElementById('btn-terminer')?.addEventListener('click', () => this.terminerTour());
+        document.getElementById('btn-quitter')?.addEventListener('click', () => this.quitterPartie());
     }
     piocherCarte() {
         if (this.joueurActif.enJeu) {
@@ -22,7 +22,20 @@ export class UIController {
     }
     terminerTour() {
         this.partie.jouerTour(this.joueurActif, 'rester');
+        this.partie.lancerTourCroupier();
         this.mettreAJourUI();
+        const resultats = this.partie.croupier.vérifierGagnant(this.partie);
+        resultats.forEach((resultat, joueur) => {
+            alert(`${joueur.nom} a ${resultat} !`);
+        });
+    }
+    gererMise() {
+        if (this.joueurActif.miser(10)) {
+            this.mettreAJourUI();
+        }
+        else {
+            alert("Mise impossible !");
+        }
     }
     quitterPartie() {
         window.location.href = "/index.html";
