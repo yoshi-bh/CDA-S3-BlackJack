@@ -14,16 +14,15 @@ export class Joueur implements IParticipant {
         this.jetons = jetonsInitiaux > 0 ? jetonsInitiaux : 0;
     }
 
-    
     recevoirCarte(carte: Carte): void {
         this.main.push(carte);
     }
 
     getMain(): Carte[] {
-        return this.main.filter(carte => carte.face); 
+        return this.main.filter(carte => carte.face);
     }
 
-  
+
     miser(montant: number): boolean {
         if (montant <= 0 || montant > this.jetons) return false;
         
@@ -31,12 +30,38 @@ export class Joueur implements IParticipant {
         return true;
     }
 
-    piocher(paquet: Paquet): void {
-        const carte = paquet.piocherCarte();
-        this.recevoirCarte(carte);
-    }
 
     stopPioche(): void {
+        this.enJeu = false;
+    }
 
+
+    public calculerScore(): number {
+        let score = 0;
+        let asCount = 0;
+
+        this.getMain().forEach(carte => {
+            switch (carte.valeur) {
+                case 'As':
+                    asCount++;
+                    score += 11;
+                    break;
+                case 'Valet':
+                case 'Dame':
+                case 'Roi':
+                    score += 10;
+                    break;
+                default:
+                    score += parseInt(carte.valeur) || 0; 
+            }
+        });
+
+
+        while (score > 21 && asCount > 0) {
+            score -= 10;
+            asCount--;
+        }
+
+        return score;
     }
 }
