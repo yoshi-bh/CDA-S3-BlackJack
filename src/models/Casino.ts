@@ -6,23 +6,27 @@ class Casino implements ICasino {
     private address: string,
     private solde: number = 0,
     private partieEnCours: [] = []
-  ) {}
+  ) {
 
-  fournirJetons(montant: number): void {
-    if (player.argent >= montant) {
-      player.argent -= montant;
-      player.jetons += montant;
-    }
+  }
+
+  fournirJetons(): void {
+    console.log("Hello");
+    const montant = (<HTMLInputElement>document.getElementById("amount")).value;
+    console.log("Amount: " + montant);
+    // if (player.argent >= montant) {
+    //   player.argent -= montant;
+    //   player.jetons += montant;
+    // }
   };
 
-  echangerJetons(montant: number): void {
-    if (player.jetons >= montant) {
-      player.jetons -= montant;
-      player.argent += montant;
-    }
+  echangerJetons(): void {
+    const montant = (<HTMLInputElement>document.getElementById("amount")).value;
+    // if (player.jetons >= montant) {
+    //   player.jetons -= montant;
+    //   player.argent += montant;
+    // }
   };
-
-  
 
   // createCasino(): Casino;
 }
