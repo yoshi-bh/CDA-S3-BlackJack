@@ -2,4 +2,9 @@
 
 ![diagrammesTPBlackJack drawio](https://github.com/user-attachments/assets/7b44aadd-3054-431e-9b7b-baf693642482)
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+Pour accéder au code : 
+  - réaliser un git clone
+  - npm install
+  - Installer l'extension live server
+  - Faire un clique droit sur index.html => "Open with live Server"
+  - Réaliser la même action pour gameboard.html (un bouton sera normalement présent sur index.html pour accès au gameboard)
