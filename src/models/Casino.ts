@@ -1,31 +1,40 @@
 import { ICasino } from "../interfaces/ICasino";
 
-class Casino implements ICasino {
+export class Casino implements ICasino {
+  private player = {argent: 0, jetons: 0};
+
 	constructor(
     private name: string,
     private address: string,
     private solde: number = 0,
     private partieEnCours: [] = []
   ) {
-
+    this.updatePlayerValues();
   }
 
-  fournirJetons(): void {
-    console.log("Hello");
-    const montant = (<HTMLInputElement>document.getElementById("amount")).value;
-    console.log("Amount: " + montant);
-    // if (player.argent >= montant) {
-    //   player.argent -= montant;
-    //   player.jetons += montant;
-    // }
+  updatePlayerValues() {
+    this.player = {argent: Number(document.getElementById("playerMoney")?.textContent), 
+                  jetons: Number(document.getElementById("playerTokens")?.textContent)};
+  }
+
+  fournirJetons(montant: number): void {
+    if (this.player.argent >= montant) {
+      document.getElementById("playerTokens")!.innerHTML = (this.player.jetons + montant).toString();
+      document.getElementById("playerMoney")!.innerHTML = (this.player.argent - montant).toString();
+      this.updatePlayerValues();
+    } else {
+      console.log("Player doesn't have enough money");
+    }
   };
 
-  echangerJetons(): void {
-    const montant = (<HTMLInputElement>document.getElementById("amount")).value;
-    // if (player.jetons >= montant) {
-    //   player.jetons -= montant;
-    //   player.argent += montant;
-    // }
+  echangerJetons(montant: number): void {
+    if (this.player.jetons >= montant) {
+      document.getElementById("playerTokens")!.innerHTML = (this.player.jetons - montant).toString();
+      document.getElementById("playerMoney")!.innerHTML = (this.player.argent + montant).toString();
+      this.updatePlayerValues();
+    } else {
+      console.log("Player doesn't have enough tokens");
+    }
   };
 
   // createCasino(): Casino;

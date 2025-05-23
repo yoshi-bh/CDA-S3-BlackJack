@@ -6,7 +6,7 @@
 		<title>Black Jack</title>
 		<link rel="stylesheet" href="./style/style.css" />
 		<link rel="stylesheet" href="./style/casino.css" />
-		<script src="/public/dist/models/Casino.js"></script>
+		<script type="module" src="/public/dist/UI.js"></script>
 	</head>
 	<body>
 		<div class="gameboard">
@@ -14,23 +14,24 @@
 		</div>
 		<div class="popup">
 			<div class="card">
+				<p id="closeBtn">X</p>
 				<div class="bank">
-					<p>200 €</p>
+					<p><span id="playerMoney">999</span> €</p>
 					<div class="token-text-container">
-						<p>0</p>
+						<p id="playerTokens">0</p>
             <img src="./ressources/Casino-Token.png" alt="BlackJack Token" />
           </div>
 				</div>
         <h2>Buy Tokens?</h1>
 					<div class="menu">
           <div class="token-text-container">
-						<input id="amount" type="number" placeholder="200">
+						<input id="amount" type="number" value="200">
             <img src="./ressources/Casino-Token.png" alt="BlackJack Token" />
           </div>
 				</div>
 				<div>
-					<button>Obtenir Jetons</button>
-					<button>Retourner Jetons</button>
+					<button id="buyToken">Obtenir Jetons</button>
+					<button id="sellToken">Retourner Jetons</button>
 				</div>
 			</div>
 		</div>
